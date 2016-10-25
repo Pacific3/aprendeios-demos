@@ -10,7 +10,7 @@ import UIKit
 
 private extension Selector {
     static let saveButtonTapped = #selector(EditNameViewController.saveButtonTapped)
-    
+    static let cancelButtonTapped = #selector(EditNameViewController.cancelButtonTapped)
 }
 
 protocol EditNameViewControllerDelegate: class {
@@ -29,6 +29,13 @@ class EditNameViewController: UIViewController {
         action: .saveButtonTapped
     )
     
+    private lazy var cancelButton: UIBarButtonItem = UIBarButtonItem(
+        title: "Cancel",
+        style: .done,
+        target: self,
+        action: .cancelButtonTapped
+    )
+    
     private lazy var nameTextField: UITextField = {
         let t = UITextField()
         t.translatesAutoresizingMaskIntoConstraints =  false
@@ -41,6 +48,7 @@ class EditNameViewController: UIViewController {
         view.backgroundColor = .white
         
         navigationItem.rightBarButtonItem = saveButton
+        navigationItem.leftBarButtonItem = cancelButton
         navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(nameTextField)
@@ -59,5 +67,10 @@ class EditNameViewController: UIViewController {
     @objc
     fileprivate func saveButtonTapped() {
         delegate?.editNameViewControllerDidFinish(newName: nameTextField.text!)
+    }
+    
+    @objc
+    fileprivate func cancelButtonTapped() {
+        delegate?.editNameViewControllerDidCancel()
     }
 }

@@ -56,14 +56,14 @@ class NameViewController: UIViewController {
     }
 }
 
-//extension NameViewController: EditNameViewControllerDelegate {
-//    func editNameViewControllerDidCancel() {
-//        dismiss(animated: true, completion: nil)
-//    }
-//    
-//    func editNameViewControllerDidFinish(newName: String) {
-//        nameLabel.text = newName
-//        
-//        dismiss(animated: true, completion: nil)
-//    }
-//}
+extension NameViewController: EditNameViewControllerDelegate {
+    func editNameViewControllerDidCancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func editNameViewControllerDidFinish(newName: String) {
+        nameLabel.text = newName
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
